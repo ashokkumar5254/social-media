@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-5">
+
+<div class="card " style="margin-top: 80px;">
+  <div class="card-body bg-light">
+    <div class="row">
+      <div class="col-md-12">
+            <div class="card bg-dark">
+              <div class="card-body">
+
+
+
+                  <h4 class="alert alert-danger">are you want to Logout!</h4>
+
+                  <form class="" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Yes"class="btn btn-danger">
+                  </form>
+                  <a href="{% url 'home' %}" class="btn btn-primary">No</a>
+
+
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Comment</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+
+<div class="card bg-secondary p-2 mb-5" style="margin-top: 80px;">
+    <h4 class="text-center">Comments Of This Post</h4>
+  <div class="card-body bg-light">
+    <div class="row">
+        <div class="col-md-5">
+           
+
+          {% if data.file_type == 'image' %}
+          <img src="{{ data.post.url }}" class="img-thumbnail" >
+        {% elif data.file_type == 'video' %}
+          <video width="250" height="250" controls>
+            <source src="{{ data.post.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% else %}
+          <audio width="200" height="200" controls>
+            <source src="{{ data.post.url }}" type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
+        {% endif %}
+
+
+
+           <div class="card mt-2">
+            <div class="card-body">
+
+
+              <form class="bg-primary text-light p-2"  method="POST" >
+                <center>
+                <b>Give Comment</b>
+            </center>
+                {% csrf_token %}
+                {{form|crispy}}
+               
+                <div class="text-center">
+                    <input type="submit" name="" value="Submit" class="btn btn-danger">
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+        
+
+      <div class="col-md-7">
+        <center>
+        <b class="">Comments:</b>{{data.comment_count}}
+    </center>
+            <div class="card p-2 bg-info">
+
+                {% if data.comments %}
+              <div class="card-body" style="max-height: 500px; overflow-y: auto;">
+                {% for i in data.comments %}
+                <div class="card mb-2">
+                    <b class="bg-dark text-light">{{i.user}}...</b>
+                    <hr>
+                    <p>{{i.comment}}</p>
+
+                </div>
+                {% endfor %}
+                
+                 
+              </div>
+              {% else %}
+              <center>
+              <h4>No Comments</h4>
+            </center>
+            </div>
+            {% endif %}
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

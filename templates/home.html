@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock %}
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-5">
+
+
+
+
+
+
+     {% for i in data %}
+      <div class="card m-4">
+        <div class="card-body">
+          <div class="">
+             <a href="{% url 'usersprofile' i.user  %}"><img src="{{i.user.profile.img.url}}" class="rounded-circle"  width="70" height="70"></a>
+             <b>{{i.user.username}}</b>....
+          </div>
+          <hr>
+          <div class="">
+           
+            <center>
+            {% if i.file_type == 'image' %}
+            <img src="{{ i.post.url }}" class="img-thumbnail" style="width: 300px; height: 300px;">
+          {% elif i.file_type == 'video' %}
+            <video width="300" height="300" controls>
+              <source src="{{ i.post.url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          {% elif i.file_type == 'audio' %}
+            <audio controls>
+              <source src="{{ i.post.url }}" type="audio/mpeg">
+              Your browser does not support the audio tag.
+            </audio>
+          {% else %}
+            <a href="{{ i.post.url }}" target="_blank">{{ i.post.name }}</a>
+          {% endif %}
+
+        </center>
+
+          </div>
+          <hr>
+          <div class="mr-5">
+            <a href="{% url 'like' i.id %}"><img src="{% static 'images/like1.png' %}"width='50' height='50' class=""></a>
+            <b class="mr-5">{{i.like_count}}</b>
+  <a href="{% url 'comment' i.id %}"><img src="{% static 'images/comment.png' %}" width='50'height='50'></a>
+  <b>{{i.comment_count}}</b>
+          </div>
+        </div>
+        <p><strong>Latest comment: </strong>{{i.latest_comment}} <b>...</b></p>
+
+
+      </div>
+      
+{% endfor %}
+
+</div>
+
+
+<div class="offset-md-1 col-md-5">
+
+{% if  not ashok1 %}
+       {% for e in data4 %}
+  <div class="card m-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="">
+            <b>{{e.user}}</b>...
+          </div>
+          <a href="{% url 'usersprofile' e.user %}"><img src="{{e.img.url}}" class="img-thumbnail mr-5"  width="80" height="80"></a>
+        </div>
+        <div class="offset-md-3 col-md-3 mt-4">
+          
+
+
+
+          <a href="{% url 'ashok' e.user %}" class="btn btn-outline-primary">Follow</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+            {% endfor %}
+{% elif ashok1 %}
+     {% for e in data4 %}
+     <div class="card m-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="">
+              <b>{{e.user}}</b>...
+            </div>
+            <a href="{% url 'usersprofile' e.user %}"><img src="{{e.img.url}}" class="img-thumbnail mr-5"  width="80" height="80"></a>
+          </div>
+          <div class="offset-md-3 col-md-3 mt-4">
+            
+  
+          {% if e.id in ashok2 %}
+  
+            <a href="{% url 'ashok' e.user %}" class="btn btn-danger">UnFollow</a>
+          {% else %}
+          <a href="{% url 'ashok' e.user %}" class="btn btn-primary">Follow</a>
+          {% endif %}
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+    
+    
+
+
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+  
+
+
+
+</div>
+
+
+</div>
+  </div>
+
+
+
+{% endblock %}

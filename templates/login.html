@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-5">
+
+<div class="card " style="margin-top: 80px;">
+  <div class="card-body bg-light">
+    <div class="row">
+      <div class="col-md-12">
+            <div class="card bg-dark">
+              <div class="card-body">
+
+
+                <form class="text-light"  method="POST">
+                  <h4 class="text-center">Login</h4>
+                  {% csrf_token %}
+                  {{form|crispy}}
+                  <div class="text-center">
+                      <input type="submit" name="" value="Submit" class="btn btn-outline-primary">
+                  </div>
+                </form>
+                <div class="text-center ">
+                <a href="{% url 'password_reset' %}" class="text-danger">Forget Password</a>
+              </div>
+                <b class="text-light">Don't Have Account  ?</b><br>
+                <center>
+                <a href="{% url 'signup' %}" class="">Create Account</a>
+</center>
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

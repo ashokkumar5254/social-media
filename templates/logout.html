@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-5">
+
+<div class="card " style="margin-top: 80px;">
+  <div class="card-body bg-light">
+    <div class="row">
+      <div class="col-md-12">
+            <div class="card bg-dark">
+              <div class="card-body">
+
+
+
+                  <p class="alert alert-success"> Your Account Has Been Logged out!!</p>
+
+
+                  <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+
+
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

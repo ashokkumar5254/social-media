@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>users</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+
+
+
+<div class="card mt-5">
+    <div class="card-body">
+        {% if ashok1 %}
+        <h1>Users found:</h1>
+        <ul>
+            {% for i in ashok1 %}
+                <a href="{% url 'amar' i.username %}"><li>{{ i.username }}</li></a>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1>No users found.</h1>
+    {% endif %}
+
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}

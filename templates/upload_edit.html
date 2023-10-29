@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>upload_edit</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="row">
+        <div class="offset-md-4 col-md-4"> 
+            <div class="card mt-5">
+                <div class="card-body">
+                    <center>
+                        {% if data %}
+    {% if data.file_type == 'image' %}
+        <img src="{{ data.post.url }}" class="img-thumbnail" style="width: 300px; height: 300px;">
+    {% elif data.file_type == 'video' %}
+        <video width="300" height="300" controls>
+            <source src="{{ data.post.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% elif data.file_type == 'audio' %}
+        <audio controls>
+            <source src="{{ data.post.url }}" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio> 
+    {% else %}
+        <a href="{{ data.post.url }}" target="_blank">{{ data.post.name }}</a>
+    {% endif %}
+{% endif %}
+
+                </center>
+
+                </div>
+                <div>
+                <strong class="mr-2 ml-5" >Likes:</strong>{{data.like_count}}
+                <strong class="mr-2 ml-5">Comment:</strong>{{data.comment_count}}
+            </div>
+
+            <div class="text-center" style="margin-top: 10%;margin-bottom: 10%;">
+                <strong class="alert alert-primary">Do You Want To Delete This Post ?</strong>
+            </div>
+            <div class="m-4">
+                <a href="{% url 'upload_delete' data.id %}" class="btn btn-danger mr-4 ml-5">Yes</a>
+                <a href="{% url 'Profile' %}" class="btn btn-success mr-4 ml-5">No</a>
+            </div>
+           
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

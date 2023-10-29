@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title></title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6 mt-3">
+            <center>
+                <img src="{{data1.img.url}}" class="img-thumbnail"style='width:150px;height:150px;'>
+            </center>  
+        </div>
+    </div>
+        <div class="row mt-2">
+            <div class="offset-md-3 col-md-6">
+                <div class="card mb-2 "style='height:500;overflow-y: auto;'>
+                   <div class="card-body">
+                    <center>
+
+                    <strong>Followers:{{a1}}</strong>
+                </center>
+                    <div class="row">
+
+                       
+                       {% if data2 %}
+
+                       {% for i in data2 %}
+                        <div class="col-md-5">
+                         <img src="{{i.user.profile.img.url}}" class="img-thumbnail"style='width:100px;height:100px;'>
+                        </div>
+                        {% if i.profile_follow == request.user.profile %}
+                        <div class="offset-md-3 col-md-4 mt-4">
+                            <a href="{% url 'followers1' i.user %}" class="btn btn-danger">Remove</a>
+                           </div>
+                        {% else %}
+                        <div class="offset-md-3 col-md-4 mt-4">
+                            <a href="" class="btn btn-danger">Remove</a>
+                           </div>
+
+                        {% endif%}
+                        {% endfor %}
+                        {% else %}
+                       <h4>No Followers</h4>
+                       {% endif %}
+                          
+                          
+                              
+                                 
+
+
+
+                           
+
+
+
+
+                    </div>
+                
+                   
+
+
+                   </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

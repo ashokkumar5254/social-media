@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>upload</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+
+<div class="card " style="margin-top: 80px;">
+    <h4 class="text-center">Upload File</h4>
+  <div class="card-body bg-light">
+    <div class="row">
+        <div class="col-md-4">
+            
+
+        </div>
+      <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+
+
+                <form class=""  method="POST" enctype="multipart/form-data">
+                  <h4 class="text-center"></h4>
+                  {% csrf_token %}
+                  {{form|crispy}}
+                  <div class="text-center">
+                      <input type="submit" name="" value="Submit" class="btn btn-outline-primary">
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>user_profile</title>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 ">
+      <div class="card mt-2 mb-2 bg-dark">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="offset-md-3 col-md-6">
+             
+
+               <b class="m-3 text-white">{{data.user}} ....</b>
+              <div class="card mt-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <img src="{{data.img.url}}" class="rounded-circle "width='200px'height='250px'><br>
+<div class="ml-4">
+
+                      <b class="">User Name:</b>{{data.user}} <br>
+                      <b class="">Email:</b>{{data.user.email}}<br>
+                      <b class="">Location:</b>{{data.location}} <br>
+                      <b class="">Bio:</b>{{data.bio}}
+                     
+</div>
+                    </div>
+                    <div class=" col-md-6"style="margin-top: 100px;">
+                    <div class="row ">
+                      <div class="col-md-3">
+                        <h5>Posts</h5>{{a1}}
+                      </div>
+                      <div class="col-md-4">
+                        <a href="{% url 'followers' data.user %}"><h5>Followers</h5>{{ashok4}}</a>
+                      </div>
+                      <div class="col-md-5">
+                        <a href="{% url 'following' data.user %}"><h5>Following</h5>{{ashok2}}</a>
+                      </div>
+
+                    </div>
+                    </div>
+
+                  </div>
+
+
+{% if data.user != request.user %}
+
+   {% if data.id in ashok6 %}
+<div class="row">
+  <div class="offset-md-5 col-md-4">
+    <a href="{% url 'ashok1' data.id %}" class="btn btn-danger">Following</a>
+  </div>
+</div>
+   {%else %}
+<div class="row">
+  <div class="offset-md-5 col-md-4">
+    <a href="{% url 'ashok1' data.id %}" class="btn btn-primary">Follow</a>
+  </div>
+</div>
+   {% endif %}
+{% endif %}
+
+
+
+
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div class="container mt-2 mb-2">
+  <b>Posts:</b>{{a1}}
+  <div class="row">
+    
+    <div class="col-md-12">
+      
+{% if data2 %}
+      <div class="card ">
+       <div class="card-body">
+
+<div class="row">
+  
+
+  {% for i in data2 %}
+  <div class="col-md-4">
+    <div class="card m-2 bg-light">
+      <div class="card-body">
+   
+
+
+        
+        
+        {% if i.file_type == 'image' %}
+          <img src="{{ i.post.url }}" class="img-thumbnail" style="width: 300px; height: 300px;">
+        {% elif i.file_type == 'video' %}
+          <video width="300" height="300" controls>
+            <source src="{{ i.post.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% elif i.file_type == 'audio' %}
+          <audio controls>
+            <source src="{{ i.post.url }}" type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
+        {% else %}
+          <a href="{{ i.post.url }}" target="_blank">{{ i.post.name }}</a>
+        {% endif %}
+      
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+ 
+
+
+
+
+
+
+
+</div>
+
+
+       </div>
+
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+  {% else %}
+  <center>
+<h4>No Posts</h4>
+</center>
+{% endif %}
+ 
+
+
+
+
+</div>
+{% endblock %}
